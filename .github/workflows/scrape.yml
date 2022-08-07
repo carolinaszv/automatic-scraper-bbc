@@ -1,5 +1,3 @@
-# This is a basic workflow
-
 # Call this whatever you want
 name: scrape
 
@@ -18,15 +16,17 @@ jobs:
       # Download all of the code from your repo
       - name: Check out this repo
         uses: actions/checkout@v2
-      # Set up Python 3.9  
+      # Set up Python 3.9
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-      # MAKE SURE YOUR SCRAPER FILENAME MATCHES THE FILENAME HERE!!    
+      - name: Install necessary Python packages
+        run: pip install pandas beautifulsoup4 requests
+      # MAKE SURE YOUR SCRAPER FILENAME MATCHES THE FILENAME HERE!!
       - name: Run the scraping script
-        run: python scrape.py
-     # I just stole the rest of this code so don't ask me questions about it   
+        run: python scraper.py
+      # I just stole the rest of this code so don't ask me questions about it
       - name: Commit and push if content changed
         run: |-
           git config user.name "Automated"
